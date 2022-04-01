@@ -1,7 +1,14 @@
+import "./homepage.scss";
+
 const Homepage = () => {
   return (
-    <div>
-      <p>This is homepage.</p>
+    <div className="hp-container" style={{ fontSize: "10rem" }}>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+        delectus exercitationem inventore velit vero fugiat nihil, adipisci
+        facilis quaerat dolorem consequuntur hic provident eum iste saepe
+        blanditiis eius aliquid pariatur.
+      </p>
     </div>
   );
 };

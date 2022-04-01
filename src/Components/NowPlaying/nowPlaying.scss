@@ -1,0 +1,17 @@
+@import "../../Styles/varaibles.scss";
+
+.np-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  max-height: 9.8vh;
+  min-height: 9.8vh;
+  background-color: $playlist-bg;
+  border-top: 1px solid $navbar-bg-hover;
+  z-index: 2;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
