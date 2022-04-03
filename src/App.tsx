@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import "./app.scss";
 import LeftNavbar from "./Components/LeftNavbar/LeftNavbar";
 import NowPlaying from "./Components/NowPlaying/NowPlaying";
+import TopNavbar from "./Components/TopNavbar/TopNavbar";
 
 function App() {
   useEffect(() => {
@@ -15,6 +16,7 @@ function App() {
       <div className="top-container">
         <LeftNavbar />
         <div className="right-container">
+          <TopNavbar />
           <Routes>
             <Route path="/" element={<Homepage />} />
           </Routes>
