@@ -2,7 +2,7 @@ import "./homepage.scss";
 
 const Homepage = () => {
   return (
-    <div className="hp-container" style={{ fontSize: "10rem" }}>
+    <div className="hp-container">
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus
         delectus exercitationem inventore velit vero fugiat nihil, adipisci

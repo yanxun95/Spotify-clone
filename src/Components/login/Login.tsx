@@ -7,7 +7,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const [currentUser, setCurrentUser] = useState({ _id: "1", name: "Guest" });
+  const [currentUser, setCurrentUser] = useState({
+    _id: "1",
+    name: "Guest",
+    userImg:
+      "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+  });
   const dispatch = useDispatch();
 
   const userSelector = useAppSelector((state) => state.user);

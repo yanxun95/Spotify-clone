@@ -4,11 +4,13 @@ import type { RootState } from "../setup/store";
 interface UserState {
   _id: string;
   name: string;
+  userImg: string;
 }
 
 const initialState: UserState = {
   _id: "",
   name: "",
+  userImg: "",
 };
 
 export const userSlice = createSlice({

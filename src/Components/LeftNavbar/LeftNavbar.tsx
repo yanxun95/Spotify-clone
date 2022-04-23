@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { BiBookmark } from "react-icons/bi";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { CgArrowDownO } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const LeftNavbar = () => {
   return (
@@ -16,24 +17,24 @@ const LeftNavbar = () => {
           </span>
         </div>
         <ul className="lnb-ul">
-          <a href="" className="lnb-li-a">
+          <Link to={"/homepage"} className="lnb-li-link">
             <li className="lnb-li">
               <GrHomeRounded className="lnb-li-icon" />
               <span className="lnb-li-font">Home</span>
             </li>
-          </a>
-          <a href="" className="lnb-li-a">
+          </Link>
+          <Link to={"/search"} className="lnb-li-link">
             <li className="lnb-li">
               <FiSearch className="lnb-li-icon" />
               <span className="lnb-li-font">Search</span>
             </li>
-          </a>
-          <a href="" className="lnb-li-a">
+          </Link>
+          <Link to={"/"} className="lnb-li-link">
             <li className="lnb-li">
               <BiBookmark className="lnb-li-icon" />
               <span className="lnb-li-font">Your Library</span>
             </li>
-          </a>
+          </Link>
         </ul>
         <ul className="lnb-ul">
           <li className="lnb-li">
