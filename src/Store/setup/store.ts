@@ -1,10 +1,53 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "../user/userSlice";
+import { combineReducers } from "redux";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { encryptTransform } from "redux-persist-transform-encrypt";
+
+let key: string;
+if (process.env.REACT_APP_SECRET_KEY) {
+  key = process.env.REACT_APP_SECRET_KEY;
+  console.log(key);
+} else {
+  throw new Error("REACT_APP_SECRET_KEY is not set");
+}
+
+const persistConfig = {
+  key: "root",
+  storage,
+  transforms: [
+    encryptTransform({
+      secretKey: key,
+      onError: (error) => {
+        console.log(error);
+      },
+    }),
+  ],
+};
+
+const bigReducer = combineReducers({
+  user: userSlice,
+});
+
+const persistedReducer = persistReducer(persistConfig, bigReducer);
 
 export const store = configureStore({
-  reducer: {
-    user: userSlice,
-  },
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
