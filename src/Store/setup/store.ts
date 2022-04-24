@@ -16,7 +16,6 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 let key: string;
 if (process.env.REACT_APP_SECRET_KEY) {
   key = process.env.REACT_APP_SECRET_KEY;
-  console.log(key);
 } else {
   throw new Error("REACT_APP_SECRET_KEY is not set");
 }

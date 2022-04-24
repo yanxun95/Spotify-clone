@@ -29,20 +29,54 @@
 }
 
 .tnb-right{
-  display: flex;
+  background-color: $black !important;
+  display: flex !important;
+  justify-content: center;
   align-items: center;
-  background-color: $black;
-  padding: 0.2rem;
-  border-radius: 2rem;
-  cursor: pointer;
+  padding: 0.2rem !important;
+  border: none !important;
+  border-radius: 2rem !important;
+
+  >*, &::after {
+    margin-right: 0.5rem;
+  }
+
+  span{
+    font-weight: $font-weight-medium;
+    font-size: $font-small;
+  }
+
+  &:focus{
+    box-shadow: none !important;
+  }
+
+  &:hover, &:focus{
+    background-color: $greeting-bg !important;
+  }
 }
 
 .tnb-user-img{
   width: 1.75rem;
   border-radius: 50%;
-  margin: 0rem 0.5rem 0rem 0rem;
 }
 
-.tnb-user-name{
-  margin-right: 0.5rem;
+.tnb-dropdown-menu{
+  inset: 8px 0px auto auto !important;
+  background-color: $dark-grey !important;
+  padding: 0.25rem !important;
+  width: 10.5rem;
+
+  >*{
+    color: $white !important;
+    font-size: $font-small;
+    border-radius: 0.2rem;
+    padding: 0.5rem 0.5rem 0.5rem  0.75rem !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dropdown-item:hover{
+    background-color: $greeting-bg;
+  }
 }

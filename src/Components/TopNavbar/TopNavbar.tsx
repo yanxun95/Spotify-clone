@@ -1,8 +1,8 @@
 import "./topNavbar.scss";
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 import { useAppSelector } from "../../Store/setup/hooks";
-import { AiFillCaretDown } from "react-icons/ai";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 const TopNavbar = () => {
   const user = useAppSelector((state) => state.user);
@@ -16,16 +16,26 @@ const TopNavbar = () => {
           <MdKeyboardArrowRight />
         </div>
       </div>
-      {/* <div className="tnb-right">
-        <img src={user.userImg} alt="userImg" className="tnb-user-img" />
-        <span className="tnb-user-name">{user.name}</span>
-        <AiFillCaretDown />
-      </div> */}
-      <DropdownButton id="dropdown-basic-button" title={user.name}>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </DropdownButton>
+
+      <Dropdown>
+        <Dropdown.Toggle
+          variant="success"
+          id="dropdown-basic"
+          className="tnb-right"
+        >
+          <img src={user.userImg} alt="userImg" className="tnb-user-img" />
+          <span>{user.name}</span>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu align="end" className="tnb-dropdown-menu">
+          <Dropdown.Item href="#/action-1">
+            <span>Account</span>
+            <BsBoxArrowUpRight />
+          </Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Log out</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 };
