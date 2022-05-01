@@ -13,11 +13,17 @@
     // overflow: hidden;
 }
 
+.header2{
+    font-size: $font-xl;
+    white-space: nowrap;
+}
+
 .right-container {
     overflow: auto;
     overflow-x: hidden;
     margin-left: 241px;
     width: 100%;
+    max-width: 1955px;
     // scroll-padding: 3px;
 
     &::-webkit-scrollbar {
