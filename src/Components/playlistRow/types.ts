@@ -1,6 +1,6 @@
-import { itemDetails } from "../types/types";
+import { artistDetails } from "../types/types";
 
 export interface playlistProps {
   title: string;
-  list: Array<itemDetails>;
+  list: Array<artistDetails>;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./homepage.scss";
 import PlaylistRow from "../playlistRow/PlaylistRow";
-import { itemDetails } from "../types/types";
+import { artistDetails } from "../types/types";
 
 const Homepage = () => {
   const [greeting, setGreeting] = useState("");
@@ -16,7 +16,7 @@ const Homepage = () => {
     "7543848",
     "292185",
   ];
-  const [artistsList, setArtistsList] = useState<itemDetails[]>([]);
+  const [artistsList, setArtistsList] = useState<artistDetails[]>([]);
 
   let currentDate = new Date();
   let time = currentDate.getHours();
@@ -33,15 +33,13 @@ const Homepage = () => {
       setGreeting("Good morning");
     } else if (time >= 12 && time < 18) {
       setGreeting("Good afternoon");
-    } else if (time >= 18 && time < 24) {
+    } else if (time >= 18 && time < 5) {
       setGreeting("Good evening");
-    } else {
-      setGreeting("Hello");
     }
   };
 
   const init = () => {
-    let artistsListArr: itemDetails[] = [];
+    let artistsListArr: artistDetails[] = [];
     const options = {
       method: "GET",
       headers: {
@@ -56,7 +54,7 @@ const Homepage = () => {
           options
         );
         if (response.ok) {
-          let result: itemDetails = await response.json();
+          let result: artistDetails = await response.json();
           artistsListArr.push(result);
           if (index === 8) {
             setArtistsList(artistsListArr);

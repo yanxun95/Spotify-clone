@@ -5,6 +5,7 @@ import TopNavbar from "../topNavbar/TopNavbar";
 import Homepage from "../homepage/Homepage";
 import "./main.scss";
 import Search from "../search/Search";
+import Artist from "../artist/Artist";
 
 const Main = () => {
   return (
@@ -15,6 +16,7 @@ const Main = () => {
           <TopNavbar />
           <Routes>
             <Route path="homepage" element={<Homepage />} />
+            <Route path="artist/:id" element={<Artist />} />
             <Route path="search" element={<Search />} />
           </Routes>
         </div>

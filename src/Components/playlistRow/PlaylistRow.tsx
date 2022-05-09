@@ -1,5 +1,5 @@
 import { Container, Row } from "react-bootstrap";
-import { itemDetails } from "../types/types";
+import { artistDetails } from "../types/types";
 import { playlistProps } from "./types";
 import "./playlistRow.scss";
 import Card from "../card/Card";
@@ -15,7 +15,7 @@ const PlaylistRow = (playlist: playlistProps) => {
         </div>
         <Container className="plr-second-container">
           <Row className="plr-row">
-            {playlist.list.map((item: itemDetails) => (
+            {playlist.list.map((item: artistDetails) => (
               <Card title="artist" cardDetails={item} key={item.id} />
             ))}
           </Row>
