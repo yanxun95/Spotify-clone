@@ -1,27 +1,30 @@
 import { Container, Row } from "react-bootstrap";
-import { artistDetails } from "../types/types";
-import { playlistProps } from "./types";
+import { albumDetails, artistDetails } from "../types/types";
+import { rowProps } from "./types";
 import "./playlistRow.scss";
 import Card from "../card/Card";
 
-const PlaylistRow = (playlist: playlistProps) => {
+const PlaylistRow = (prop: rowProps) => {
   return (
     <>
-      {/* {playlist.list.length === 9 && ( */}
       <div className="plr-main-container">
         <div className="plr-first-container">
-          <h3 className="plr-title">{playlist.title}</h3>
+          <h3 className="plr-title">{prop.title}</h3>
           <span className="btn-see-all">SEE ALL</span>
         </div>
         <Container className="plr-second-container">
           <Row className="plr-row">
-            {playlist.list.map((item: artistDetails) => (
-              <Card title="artist" cardDetails={item} key={item.id} />
-            ))}
+            {prop.artists !== undefined &&
+              prop.artists.map((item: artistDetails) => (
+                <Card artistDetailsCard={item} key={item.id} />
+              ))}
+            {prop.albums !== undefined &&
+              prop.albums.map((item: albumDetails) => (
+                <Card albumtDetailsCard={item} key={item.id} />
+              ))}
           </Row>
         </Container>
       </div>
-      {/* )} */}
     </>
   );
 };

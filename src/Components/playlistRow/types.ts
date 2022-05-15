@@ -1,6 +1,7 @@
-import { artistDetails } from "../types/types";
+import { albumDetails, artistDetails } from "../types/types";
 
-export interface playlistProps {
+export interface rowProps {
   title: string;
-  list: Array<artistDetails>;
+  artists?: Array<artistDetails>;
+  albums?: Array<albumDetails>;
 }

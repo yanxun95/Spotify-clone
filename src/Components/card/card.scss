@@ -12,6 +12,8 @@
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    color: $white;
+
 
     &:hover {
         background-color: $dark-grey;
@@ -32,6 +34,7 @@
     width: 100%;
     margin-bottom: 1rem;
     position: relative;
+    min-width: 9.5rem;
 
 }
 
@@ -63,8 +66,17 @@
     width: inherit;
 }
 
+.item-images-square {
+    border-radius: 0.25rem;
+    width: inherit;
+}
+
 .plr-item-name {
+    max-width: 9.5rem;
     font-weight: $font-weight-medium;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .plr-item-info {

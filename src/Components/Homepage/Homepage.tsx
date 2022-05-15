@@ -59,8 +59,6 @@ const Homepage = () => {
           if (index === 8) {
             setArtistsList(artistsListArr);
           }
-          // setArtistsList([...artistsList, result]);
-          // console.log(artistsList, result);
         } else {
           console.log("Error");
         }
@@ -75,16 +73,12 @@ const Homepage = () => {
     init();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(artistsList);
-  // }, [artistsList.length]);
-
   return (
     <>
       {artistsList.length !== 0 && (
         <div className="hp-container">
           <h2 className="header2">{greeting}</h2>
-          <PlaylistRow title={"Artists"} list={artistsList} />
+          <PlaylistRow title={"Artists"} artists={artistsList} />
         </div>
       )}
     </>

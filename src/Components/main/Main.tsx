@@ -6,6 +6,7 @@ import Homepage from "../homepage/Homepage";
 import "./main.scss";
 import Search from "../search/Search";
 import Artist from "../artist/Artist";
+import Album from "../album/Album";
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
             <Route path="homepage" element={<Homepage />} />
             <Route path="artist/:id" element={<Artist />} />
             <Route path="search" element={<Search />} />
+            <Route path="album/:id" element={<Album />} />
           </Routes>
         </div>
       </div>

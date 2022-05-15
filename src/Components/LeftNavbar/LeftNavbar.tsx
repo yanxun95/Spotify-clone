@@ -49,14 +49,14 @@ const LeftNavbar = () => {
         <div className="break-line">
           <div className="break-line-border"></div>
         </div>
-        <ul className="lnb-playlist-ul">
+        {/* <ul className="lnb-playlist-ul">
           <li className="lnb-li">
             <span className="lnb-li-playlist-font">Legends Never Die</span>
           </li>
           <li className="lnb-li">
             <span className="lnb-li-playlist-font">Justice</span>
           </li>
-        </ul>
+        </ul> */}
         <div className="install-app-container">
           <div className="install-app-in-container">
             <CgArrowDownO className="install-app-icon" />

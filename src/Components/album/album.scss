@@ -1,0 +1,101 @@
+@import "../../styles/varaibles.scss";
+
+.album-main-container{
+    margin-top: 1rem;
+    padding: 0rem 2rem;
+}
+
+.album-first-container{
+    display: flex;
+    height: 15rem;
+    align-items: flex-end;
+}
+
+.album-image-container{
+    box-shadow: 0px 0px 10px 3px $black;
+    margin-right: 1.5rem;
+    width: 14.5rem;
+    height: 14.5rem;
+
+    @media screen and (max-width: 1280px) {
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+.album-image{
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+}
+
+.album-details-container{
+    color: $white;
+}
+
+.album-type{
+    font-size: $font-xs;
+    font-weight: $font-weight-medium;
+}
+
+.album-title{
+    font-size: $font-title;
+    font-weight: $font-weight-bold;
+    white-space: nowrap;
+
+    @media screen and (max-width: 1450px) {
+        font-size: 4.5rem;
+    }
+
+    @media screen and (max-width: 1250px) {
+        font-size: 3.5rem;
+        white-space: normal;
+    }
+    
+}
+
+.small-album-title-font{
+    font-size: 4rem;
+
+    @media screen and (max-width: 1450px) {
+        font-size: 3rem;
+    }
+
+    @media screen and (max-width: 1420px) {
+        font-size: 2.5rem;
+        white-space: normal;
+    }
+}
+
+.xs-album-title-font{
+    font-size: 2.5rem;
+
+    @media screen and (max-width: 1450px) {
+        font-size: 2rem;
+    }
+
+    @media screen and (max-width: 1230px) {
+        font-size: 1.75rem;
+        white-space: normal;
+    }
+}
+
+.album-artist{
+    width: 1.5rem;
+    border-radius: 50%;
+    margin-right: 0.25rem
+}
+
+.album-details{
+    font-size: $font-small;
+    white-space: nowrap;
+}
+
+.album-artist-name{
+    font-weight: $font-weight-medium;
+}
+
+.album-duration{
+    color : $scrollbar-active;
+}
+    

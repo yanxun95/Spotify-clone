@@ -1,6 +1,6 @@
-import { artistDetails } from "../types/types";
+import { albumDetails, artistDetails } from "../types/types";
 
 export interface cardDetails {
-  title: string;
-  cardDetails: artistDetails;
+  artistDetailsCard?: artistDetails;
+  albumtDetailsCard?: albumDetails;
 }

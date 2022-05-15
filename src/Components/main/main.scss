@@ -2,6 +2,18 @@
 
 .main-container {
     width: 100%;
+    height: 91vh;
+
+    @media screen and (min-height: 995px) {
+        height: 93vh;
+    }
+
+    @media screen and (min-height: 1290px) {
+        height: 94vh;
+    }
+    @media screen and (min-height: 1505PX) {
+        height: 95vh;
+    }
 }
 
 .top-container {
@@ -20,9 +32,10 @@
 
 .right-container {
     overflow: auto;
-    overflow-x: hidden;
+
     margin-left: 241px;
     width: 100%;
+    height: 100%;
     // scroll-padding: 3px;
 
     &::-webkit-scrollbar {
