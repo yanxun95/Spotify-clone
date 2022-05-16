@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { albumDetails, artistDetails, songsDetails } from "../types/types";
+import {
+  albumDetails,
+  artistDetails,
+  songsDetails,
+} from "../../Components/types/types";
 import "./artist.scss";
-import { CgPlayButton } from "react-icons/cg";
-import { FiMoreHorizontal, FiHeart } from "react-icons/fi";
-import PlaylistRow from "../playlistRow/PlaylistRow";
+import PlaylistRow from "../../Components/playlistRow/PlaylistRow";
+import BtnPlay from "../../Components/btnPlay/BtnPlay";
+import BtnThreeDotMenu from "../../Components/btnThreeDotMenu/BtnThreeDotMenu";
+import SongDurationLike from "../../Components/songDurationLike/SongDurationLike";
+import SongDurationMenu from "../../Components/songDurationMenu/SongDurationMenu";
+import { convertSecondToMinutes } from "../../Components/function/Function";
 
 const Artist = () => {
   let artistId = useParams().id;
@@ -100,14 +107,6 @@ const Artist = () => {
     return smallAblumListWithoutDuplicate;
   };
 
-  const convertSecondToMinutes = (duration: number) => {
-    let minutes = Math.floor(duration / 60);
-    let seconds = duration - minutes * 60;
-    seconds.toString().length < 2 && (seconds *= 10);
-
-    return `${minutes}:${seconds}`;
-  };
-
   const btnSeeMore = () => {
     setSeeMore(!seeMore);
     let getSeeMore = document.querySelectorAll(".song-container");
@@ -153,9 +152,9 @@ const Artist = () => {
             </div>
           </div>
           <div className="artist-second-container">
-            <CgPlayButton className="artist-btn-big-play" />
+            <BtnPlay />
             <div className="btn-artist-follow">FOLLOW</div>
-            <FiMoreHorizontal className="artist-follow-menu" />
+            <BtnThreeDotMenu />
           </div>
           <div className="artist-third-container">
             <h4 className="artist-section-title">Popular</h4>
@@ -174,9 +173,9 @@ const Artist = () => {
                     <span>{song.title_short}</span>
                   </div>
                   <div className="song-duration-container">
-                    <FiHeart className="song-duration-like" />
-                    {convertSecondToMinutes(song.duration)}
-                    <FiMoreHorizontal className="song-duration-menu" />
+                    <SongDurationLike />
+                    <span>{convertSecondToMinutes(song.duration)}</span>
+                    <SongDurationMenu />
                   </div>
                 </div>
               ))}

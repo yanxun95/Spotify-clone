@@ -1,4 +1,4 @@
-import { artistDetails } from "../types/types";
+import { artistDetails } from "../../Components/types/types";
 
 export interface albumMoreDeatils {
   artist: artistDetails;

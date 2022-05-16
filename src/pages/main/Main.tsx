@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import LeftNavbar from "../leftNavbar/LeftNavbar";
-import NowPlaying from "../nowPlaying/NowPlaying";
-import TopNavbar from "../topNavbar/TopNavbar";
+import LeftNavbar from "../../Components/leftNavbar/LeftNavbar";
+import NowPlaying from "../../Components/nowPlaying/NowPlaying";
+import TopNavbar from "../../Components/topNavbar/TopNavbar";
 import Homepage from "../homepage/Homepage";
 import "./main.scss";
-import Search from "../search/Search";
+import Search from "../../Components/search/Search";
 import Artist from "../artist/Artist";
 import Album from "../album/Album";
 

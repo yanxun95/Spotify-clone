@@ -1,0 +1,10 @@
+@import "../../styles/varaibles.scss";
+
+.btn-three-dot-menu {
+    color: $grey70;
+    font-size: $font-large;
+
+    &:hover {
+        color: $white;
+    }
+}

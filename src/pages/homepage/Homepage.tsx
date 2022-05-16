@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./homepage.scss";
-import PlaylistRow from "../playlistRow/PlaylistRow";
-import { artistDetails } from "../types/types";
+import PlaylistRow from "../../Components/playlistRow/PlaylistRow";
+import { artistDetails } from "../../Components/types/types";
 
 const Homepage = () => {
   const [greeting, setGreeting] = useState("");

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-import Login from "./Components/login/Login";
-import Main from "./Components/main/Main";
+import Login from "./pages/login/Login";
+import Main from "./pages/main/Main";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

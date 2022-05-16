@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { albumMoreDeatils } from "./types";
 import "./album.scss";
+import { FiHeart } from "react-icons/fi";
+import BtnPlay from "../../Components/btnPlay/BtnPlay";
+import BtnThreeDotMenu from "../../Components/btnThreeDotMenu/BtnThreeDotMenu";
+import SongDurationLike from "../../Components/songDurationLike/SongDurationLike";
+import SongDurationMenu from "../../Components/songDurationMenu/SongDurationMenu";
+import { convertSecondToMinutes } from "../../Components/function/Function";
+import { BiTime } from "react-icons/bi";
 
 const Album = () => {
   let albumId = useParams().id;
@@ -40,7 +47,7 @@ const Album = () => {
     }
   };
 
-  const convertSecondToMinutes = (duration: number) => {
+  const convertSecondToMinutesAlbum = (duration: number) => {
     let minutes = Math.floor(duration / 60);
     return `about ${minutes} min`;
   };
@@ -160,12 +167,50 @@ const Album = () => {
                   {album.nb_tracks} songs,{" "}
                 </span>
                 <span className="album-duration">
-                  {convertSecondToMinutes(album.duration)}
+                  {convertSecondToMinutesAlbum(album.duration)}
                 </span>
               </div>
             </div>
           </div>
-          <div className="album-second-container"></div>
+          <div className="album-second-container">
+            <BtnPlay />
+            <FiHeart className="big-love-icon" />
+            <BtnThreeDotMenu />
+          </div>
+          <div className="album-third-container">
+            <div className="album-info">
+              <div className="album-info-first">
+                <span className="album-first-col">#</span>
+                <span className="album-first-col-title">TITLE</span>
+              </div>
+              <BiTime className="album-time-icon" />
+            </div>
+            {album.tracks.data.map((song, index) => (
+              <div key={song.id} className="song-container">
+                <div className="song-title-container">
+                  <div className="song-list-number-container">
+                    <span className="song-list-number">{index + 1}</span>
+                  </div>
+                  <div className="album-song-col2">
+                    <span className="album-song-col2-title">
+                      {song.title_short}
+                    </span>
+                    <span className="album-song-col2-artist-name">
+                      {song.artist.name}
+                    </span>
+                  </div>
+                </div>
+                <div className="song-duration-container">
+                  <SongDurationLike />
+                  <span>{convertSecondToMinutes(song.duration)}</span>
+                  <SongDurationMenu />
+                </div>
+              </div>
+            ))}
+            <div className="album-label">
+              <span>{album.label}</span>
+            </div>
+          </div>
         </div>
       )}
     </>
