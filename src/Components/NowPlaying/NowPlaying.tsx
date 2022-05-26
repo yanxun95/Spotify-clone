@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import { Slider } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setNumOfSong } from "../../Store/playing/numOfSongSlice";
+import { setPlaylist } from "../../Store/playing/playingSlice";
+import { songsDetails } from "../types/types";
 
 const NowPlaying = () => {
   const playlist = useAppSelector((state) => state.playlist);
@@ -24,12 +26,15 @@ const NowPlaying = () => {
   const [temporaryVolume, setTemporaryVolume] = useState<number>(0);
   const [songDuration, setSongDuration] = useState<number>(0);
   const [songCurrentDuration, setSongCurrentDuration] = useState<number>(0);
+  const [temporaryPlaylist, setTemporaryPlaylist] = useState<
+    Array<songsDetails>
+  >([]);
+  const [suffer, setSuffer] = useState<Boolean>(true);
   const dispatch = useDispatch();
   let audio = document.getElementById("audioElement") as HTMLAudioElement;
   audio !== null && (audio.volume = Number((volumeValue / 100).toFixed(1)));
 
   const playMusic = (action: string) => {
-    console.log("playMusic");
     const btnPlay = document.getElementById("npBtnPlay");
     const btnPause = document.getElementById("npBtnPause");
     if (action === "play") {
@@ -94,12 +99,41 @@ const NowPlaying = () => {
   };
 
   const controlDurationSong = (event: Event, value: number | number[]) => {
-    let newValue = Number(value);
+    let newDuration = Number(value);
+    audio.currentTime = newDuration;
   };
 
   const controlVolume = (event: Event, value: number | number[]) => {
     let newVolume = Number(value);
     setVolumeValue(newVolume);
+  };
+
+  const sufferList = () => {
+    const btnSuffer = document.getElementById("btnSuffer");
+    if (suffer) {
+      let arr = JSON.parse(JSON.stringify(playlist));
+      let currentIndex = arr.length,
+        randomIndex;
+
+      setTemporaryPlaylist(playlist);
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [arr[currentIndex], arr[randomIndex]] = [
+          arr[randomIndex],
+          arr[currentIndex],
+        ];
+      }
+      initPlaybtn();
+      btnSuffer !== null && btnSuffer.classList.add("set-color-dark-green");
+      dispatch(setPlaylist(arr));
+    } else {
+      dispatch(setPlaylist(temporaryPlaylist));
+      btnSuffer !== null && btnSuffer.classList.remove("set-color-dark-green");
+      initPlaybtn();
+    }
+    setSuffer(!suffer);
   };
 
   const mute = (action: string) => {
@@ -121,17 +155,21 @@ const NowPlaying = () => {
     }
   };
 
-  useEffect(() => {
-    playMusic("play");
-  }, [numberOfSong]);
-
-  useEffect(() => {
+  const initPlaybtn = () => {
     const btnPlay = document.getElementById("npBtnPlay");
     const btnPause = document.getElementById("npBtnPause");
     if (btnPlay !== null && btnPause !== null) {
       btnPlay.classList.remove("hide-item");
       btnPause.classList.remove("display-item");
     }
+  };
+
+  useEffect(() => {
+    playMusic("play");
+  }, [numberOfSong]);
+
+  useEffect(() => {
+    initPlaybtn();
   }, []);
 
   // useEffect(() => {
@@ -170,8 +208,8 @@ const NowPlaying = () => {
       </div>
       <div className="np-seconnd-container">
         <div className="np-play-bar">
-          <TiArrowShuffle />
-          <BsFillCaretLeftFill onClick={() => previousSong()} />
+          <TiArrowShuffle id="btnSuffer" onClick={sufferList} />
+          <BsFillCaretLeftFill onClick={previousSong} />
           <div className="np-play-container">
             <BsPlayCircleFill
               id="npBtnPlay"
@@ -184,7 +222,7 @@ const NowPlaying = () => {
               onClick={() => playMusic("pause")}
             />
           </div>
-          <BsFillCaretRightFill onClick={() => nextSong()} />
+          <BsFillCaretRightFill onClick={nextSong} />
           <TiArrowLoop />
         </div>
         <div className="np-progress">

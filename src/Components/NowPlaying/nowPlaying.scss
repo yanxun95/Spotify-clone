@@ -71,6 +71,10 @@
   &:hover {
     color: $white;
   }
+
+  &:active {
+    color: $scrollbar-active;
+  }
 }
 
 .np-seconnd-container{
@@ -94,6 +98,10 @@
 
     &:hover{
       color: $white;
+    }
+
+    &:active{
+      color: $scrollbar-active;
     }
   }
 
@@ -140,7 +148,7 @@
 
   &:hover {
     .css-1n40zqk-MuiSlider-track{
-      color: #1db954 !important;
+      color: $dark-green !important;
     }
 
     .css-14gf62f-MuiSlider-thumb{
@@ -157,18 +165,26 @@
   display: none !important;
 }
 
+.set-color-dark-green {
+  color: $dark-green ;
+}
+
 .np-third-container{
   display: flex;
   justify-content: center;
   align-items: center;
   color: $scrollbar-hover;
 
-  svg:nth-child(-n+3) {
+  svg:nth-child(n+1) {
     margin: 0rem 0rem 0rem 0.75rem;
     font-size: 1.25rem;
 
     &:hover {
       color: $white;
+    }
+
+    &:active {
+      color: $scrollbar-active;
     }
   }
 
@@ -184,3 +200,4 @@
   width: 5.8rem !important;
   margin: 0rem 0.5rem;
 }
+
