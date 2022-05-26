@@ -34,8 +34,7 @@
     width: 100%;
     margin-bottom: 1rem;
     position: relative;
-    min-width: 9.5rem;
-
+    // min-width: 9.5rem;
 }
 
 .item-hover-play{
@@ -69,6 +68,7 @@
 .item-images-square {
     border-radius: 0.25rem;
     width: inherit;
+    min-width: 9.5rem;
 }
 
 .plr-item-name {

@@ -1,6 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../setup/store";
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface UserState {
   _id: string;
   name: string;

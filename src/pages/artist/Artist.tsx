@@ -12,6 +12,9 @@ import BtnThreeDotMenu from "../../Components/btnThreeDotMenu/BtnThreeDotMenu";
 import SongDurationLike from "../../Components/songDurationLike/SongDurationLike";
 import SongDurationMenu from "../../Components/songDurationMenu/SongDurationMenu";
 import { convertSecondToMinutes } from "../../Components/function/Function";
+import { useDispatch } from "react-redux";
+import { setPlaylist } from "../../Store/playing/playingSlice";
+import { setNumOfSong } from "../../Store/playing/numOfSongSlice";
 
 const Artist = () => {
   let artistId = useParams().id;
@@ -19,6 +22,7 @@ const Artist = () => {
   const [songList, setSongList] = useState<Array<songsDetails>>([]);
   const [albumList, setAlbumList] = useState<Array<albumDetails>>([]);
   let [seeMore, setSeeMore] = useState<boolean>(true);
+  const dispatch = useDispatch();
 
   let key: string;
   if (process.env.REACT_APP_RAPIDAPI_KEY) {
@@ -61,7 +65,6 @@ const Artist = () => {
         );
         if (response.ok) {
           let result = await response.json();
-          console.log(result);
           setPopularSongs(result.data);
           getAlbumList(result.data);
         } else {
@@ -83,6 +86,11 @@ const Artist = () => {
     setSongList(smallSongList.slice(0, 10));
   };
 
+  const setNowPlaying = (numOfSong: number) => {
+    songList.length !== 0 && dispatch(setPlaylist(songList));
+    dispatch(setNumOfSong(numOfSong));
+  };
+
   const getAlbumList = (arr: songsDetails[]) => {
     let smallAblumList: albumDetails[] = [];
     arr.forEach((song: songsDetails) => {
@@ -90,7 +98,7 @@ const Artist = () => {
         song.album.title.includes("undefined") === false &&
         smallAblumList.push(song.album);
     });
-    smallAblumList = removeDuplicateAlbum(smallAblumList);
+    smallAblumList = removeDuplicateAlbum(smallAblumList).slice(0, 9);
     setAlbumList(smallAblumList);
   };
 
@@ -160,7 +168,11 @@ const Artist = () => {
             <h4 className="artist-section-title">Popular</h4>
             <div className="artist-song-container">
               {songList.map((song, index) => (
-                <div key={song.id} className="song-container">
+                <div
+                  key={song.id}
+                  className="song-container"
+                  onDoubleClick={() => setNowPlaying(index)}
+                >
                   <div className="song-title-container">
                     <div className="song-list-number-container">
                       <span className="song-list-number">{index + 1}</span>
@@ -179,7 +191,6 @@ const Artist = () => {
                   </div>
                 </div>
               ))}
-              {/* {console.log(songList[0].id)} */}
             </div>
             <div className="btn-see-more-container">
               <span className="btn-see-more" onClick={() => btnSeeMore()}>

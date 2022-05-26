@@ -12,6 +12,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { encryptTransform } from "redux-persist-transform-encrypt";
+import playingSlice from "../playing/playingSlice";
+import numOfSongSlice from "../playing/numOfSongSlice";
 
 let key: string;
 if (process.env.REACT_APP_SECRET_KEY) {
@@ -35,6 +37,8 @@ const persistConfig = {
 
 const bigReducer = combineReducers({
   user: userSlice,
+  playlist: playingSlice,
+  numOfSong: numOfSongSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, bigReducer);
