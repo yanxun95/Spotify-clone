@@ -8,4 +8,8 @@
     &:hover {
         color: $white;
     }
+
+    &:active {
+        color: $scrollbar-active;
+    }
 }

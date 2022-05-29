@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { albumMoreDeatils } from "./types";
+import { props } from "./types";
+import {
+  albumMoreDeatils,
+  smallSongDetails,
+} from "../../Components/types/types";
 import "./album.scss";
 import { FiHeart } from "react-icons/fi";
 import BtnPlay from "../../Components/btnPlay/BtnPlay";
@@ -9,11 +13,21 @@ import SongDurationLike from "../../Components/songDurationLike/SongDurationLike
 import SongDurationMenu from "../../Components/songDurationMenu/SongDurationMenu";
 import { convertSecondToMinutes } from "../../Components/function/Function";
 import { BiTime } from "react-icons/bi";
+import { setNumOfSong } from "../../Store/playing/numOfSongSlice";
+import { setPlaylist } from "../../Store/playing/playingSlice";
+import { useDispatch } from "react-redux";
+import { songsDetails } from "../../Components/types/types";
+import { useAppSelector } from "../../Store/setup/hooks";
 
-const Album = () => {
+const Album = (title: props) => {
   let albumId = useParams().id;
   const [album, setAlbum] = useState<albumMoreDeatils>();
   const [albumTitle, setAlbumTitle] = useState<String>();
+  const [songList, setSongList] = useState<Array<songsDetails>>([]);
+  const likedSongs = useAppSelector((state) => state.likedSongs);
+  const [addLikeSong, setAddLikeSong] = useState<songsDetails>();
+  const [currentType, setCurrentType] = useState<string>("");
+  const dispatch = useDispatch();
 
   let key: string;
   if (process.env.REACT_APP_RAPIDAPI_KEY) {
@@ -31,19 +45,27 @@ const Album = () => {
   };
 
   const getAlbumDetails = async () => {
-    try {
-      const response = await fetch(
-        `https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`,
-        options
-      );
-      if (response.ok) {
-        let result = await response.json();
-        setAlbum(result);
-      } else {
-        console.log("Error");
+    //if the title is album the run fetch
+    //if the title is liked, set album to liked redux
+    if (title.title === "album") {
+      try {
+        const response = await fetch(
+          `https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`,
+          options
+        );
+        if (response.ok) {
+          let result = await response.json();
+          setCurrentType("album");
+          setAlbum(result);
+        } else {
+          console.log("Error");
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else if (title.title === "liked") {
+      console.log("liked");
+      setAlbum(likedSongs);
     }
   };
 
@@ -63,6 +85,62 @@ const Album = () => {
         element !== null && element.classList.add("small-album-title-font");
       }
       setAlbumTitle(title.charAt(0).toUpperCase() + title.slice(1));
+    }
+  };
+
+  const setTypesForNowPlaying = () => {
+    let newArr = [];
+    if (album !== undefined && currentType === "album") {
+      for (let i = 0; i < album.tracks.data.length; i++) {
+        let newObj = {
+          album: {
+            cover: album.cover,
+            cover_big: album.cover_big,
+            cover_medium: album.cover_medium,
+            cover_small: album.cover_small,
+            cover_xl: album.cover_xl,
+            id: album.id,
+            md5_image: album.md5_image,
+            title: album.title,
+            tracklist: album.tracklist,
+            type: album.type,
+          },
+          artist: {
+            id: album.artist.id,
+            name: album.artist.name,
+            picture: album.artist.picture,
+            picture_big: album.artist.picture_big,
+            picture_medium: album.artist.picture_medium,
+            picture_small: album.artist.picture_small,
+            picture_xl: album.artist.picture_xl,
+            tracklist: album.artist.tracklist,
+            type: album.artist.type,
+          },
+          duration: album.tracks.data[i].duration,
+          explicit_content_cover: album.tracks.data[i].explicit_content_cover,
+          explicit_content_lyrics: album.tracks.data[i].explicit_content_lyrics,
+          explicit_lyrics: album.tracks.data[i].explicit_lyrics,
+          id: album.tracks.data[i].id,
+          link: album.tracks.data[i].link,
+          md5_image: album.tracks.data[i].md5_image,
+          preview: album.tracks.data[i].preview,
+          rank: album.tracks.data[i].rank,
+          readable: album.tracks.data[i].readable,
+          title: album.tracks.data[i].title,
+          title_short: album.tracks.data[i].title_short,
+          title_version: album.tracks.data[i].title_version,
+          type: album.tracks.data[i].type,
+        };
+        newArr.push(newObj);
+      }
+      setSongList(newArr);
+    }
+  };
+
+  const setNowPlaying = (numOfSong: number) => {
+    if (album !== undefined) {
+      album.tracks.data.length !== 0 && dispatch(setPlaylist(songList));
+      dispatch(setNumOfSong(numOfSong));
     }
   };
 
@@ -132,6 +210,7 @@ const Album = () => {
 
   useEffect(() => {
     album !== undefined && checkLengthOfTitle();
+    album !== undefined && setTypesForNowPlaying();
   }, [album]);
   return (
     <>
@@ -186,7 +265,11 @@ const Album = () => {
               <BiTime className="album-time-icon" />
             </div>
             {album.tracks.data.map((song, index) => (
-              <div key={song.id} className="song-container">
+              <div
+                key={song.id}
+                className="song-container"
+                onDoubleClick={() => setNowPlaying(index)}
+              >
                 <div className="song-title-container">
                   <div className="song-list-number-container">
                     <span className="song-list-number">{index + 1}</span>
@@ -201,7 +284,7 @@ const Album = () => {
                   </div>
                 </div>
                 <div className="song-duration-container">
-                  <SongDurationLike />
+                  <SongDurationLike songDetails={songList[index]} />
                   <span>{convertSecondToMinutes(song.duration)}</span>
                   <SongDurationMenu />
                 </div>

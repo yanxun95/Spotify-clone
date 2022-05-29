@@ -185,7 +185,7 @@ const Artist = () => {
                     <span>{song.title_short}</span>
                   </div>
                   <div className="song-duration-container">
-                    <SongDurationLike />
+                    <SongDurationLike songDetails={song} />
                     <span>{convertSecondToMinutes(song.duration)}</span>
                     <SongDurationMenu />
                   </div>

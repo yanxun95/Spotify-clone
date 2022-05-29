@@ -3,17 +3,18 @@ import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 import { useAppSelector } from "../../Store/setup/hooks";
 import { Dropdown } from "react-bootstrap";
 import { BsBoxArrowUpRight } from "react-icons/bs";
-
+import { useNavigate } from "react-router-dom";
 const TopNavbar = () => {
+  const navigate = useNavigate();
   const user = useAppSelector((state) => state.user);
   return (
     <div className="tnb-container">
       <div className="tnb-left">
         <div className="tnb-btn-container">
-          <MdKeyboardArrowLeft />
+          <MdKeyboardArrowLeft onClick={() => navigate(-1)} />
         </div>
         <div className="tnb-btn-container">
-          <MdKeyboardArrowRight />
+          <MdKeyboardArrowRight onClick={() => navigate(1)} />
         </div>
       </div>
 
@@ -28,12 +29,12 @@ const TopNavbar = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu align="end" className="tnb-dropdown-menu">
-          <Dropdown.Item href="#/action-1">
+          <Dropdown.Item>
             <span>Account</span>
             <BsBoxArrowUpRight />
           </Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Log out</Dropdown.Item>
+          <Dropdown.Item>Profile</Dropdown.Item>
+          <Dropdown.Item onClick={() => navigate("/")}>Log out</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>

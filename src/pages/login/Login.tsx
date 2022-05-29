@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setPlaylist } from "../../Store/playing/playingSlice";
 import { setNumOfSong } from "../../Store/playing/numOfSongSlice";
+import { addLikeSong } from "../../Store/liked/likedSlice";
 
 const Login = () => {
   const [currentUser, setCurrentUser] = useState({
@@ -15,7 +16,7 @@ const Login = () => {
       "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
   });
 
-  const [nowPlaying, setNowPlaying] = useState([
+  const [songs, setSongs] = useState([
     {
       album: {
         id: 9007781,
@@ -72,12 +73,17 @@ const Login = () => {
   };
 
   const setNowPlayingRedux = () => {
-    nowPlaying !== null && dispatch(setPlaylist(nowPlaying));
+    songs !== null && dispatch(setPlaylist(songs));
   };
 
+  // const initLikedList = () => {
+  //   songs !== null && dispatch(addLikeSong(songs));
+  // };
+
   useEffect(() => {
-    setNowPlayingRedux();
-    dispatch(setNumOfSong(0));
+    // initLikedList();
+    // setNowPlayingRedux();
+    // dispatch(setNumOfSong(0));
   }, []);
   return (
     <div className="login-main-container">

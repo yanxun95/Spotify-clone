@@ -19,7 +19,8 @@ const Main = () => {
             <Route path="homepage" element={<Homepage />} />
             <Route path="artist/:id" element={<Artist />} />
             <Route path="search" element={<Search />} />
-            <Route path="album/:id" element={<Album />} />
+            <Route path="album/:id" element={<Album title="album" />} />
+            <Route path="album/liked" element={<Album title="liked" />} />
           </Routes>
         </div>
       </div>

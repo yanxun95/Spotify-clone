@@ -27,6 +27,7 @@
   display: flex;
   align-items: center;
   color: $white;
+  cursor: pointer;
 }
 
 .spotify-logo {
@@ -64,8 +65,10 @@
   display: flex;
   align-items: center;
   width: 100%;
+  cursor: pointer;
+  color: $grey70;
 
-  &:hover {
+  &:hover, &:target {
     .lnb-li-font,
     .lnb-li-playlist-font {
       color: $white;
@@ -74,9 +77,11 @@
     .lnb-li-icon {
       color: $white;
       stroke: $white;
+      fill: $white;
 
       path {
         stroke: $white;
+        fill: $white;
       }
     }
   }
@@ -91,16 +96,12 @@
 
   path {
     stroke: $grey70;
-    fill: $grey70;
   }
-}
-
-.lnb-li-font {
-  color: $grey70;
 }
 
 .lnb-li-link {
   text-decoration: none;
+  // color: $grey70;
 }
 
 .break-line {
@@ -147,3 +148,20 @@
     }
   }
 }
+
+
+.lnb-li-font-white{
+  color: $white;
+
+  *{
+    color: $white;
+    stroke: $white;
+    fill: $white;
+
+    *{
+      stroke: $white  !important;
+      fill: $white  !important;
+    }
+  }
+}
+
