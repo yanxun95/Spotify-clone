@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 
 import "./main.scss";
-import LeftNavbar from "../../Components/leftNavbar/LeftNavbar";
-import NowPlaying from "../../Components/nowPlaying/NowPlaying";
-import TopNavbar from "../../Components/topNavbar/TopNavbar";
+import LeftNavbar from "../../Components/LeftNavbar/LeftNavbar";
+import NowPlaying from "../../Components/NowPlaying/NowPlaying";
+import TopNavbar from "../../Components/TopNavbar/TopNavbar";
 import Homepage from "../homepage/Homepage";
 import Artist from "../artist/Artist";
 import Search from "../../Components/search/Search";
