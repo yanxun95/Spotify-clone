@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { props } from "./types";
-import {
-  albumMoreDeatils,
-  smallSongDetails,
-} from "../../Components/types/types";
+import { albumMoreDeatils } from "../../Components/types/types";
 import "./album.scss";
-import { FiHeart } from "react-icons/fi";
-import BtnPlay from "../../Components/btnPlay/BtnPlay";
-import BtnThreeDotMenu from "../../Components/btnThreeDotMenu/BtnThreeDotMenu";
 import SongDurationLike from "../../Components/songDurationLike/SongDurationLike";
 import SongDurationMenu from "../../Components/songDurationMenu/SongDurationMenu";
 import { convertSecondToMinutes } from "../../Components/function/Function";
@@ -17,16 +10,12 @@ import { setNumOfSong } from "../../Store/playing/numOfSongSlice";
 import { setPlaylist } from "../../Store/playing/playingSlice";
 import { useDispatch } from "react-redux";
 import { songsDetails } from "../../Components/types/types";
-import { useAppSelector } from "../../Store/setup/hooks";
+import AlbumContainer from "../../Components/albumContainer/AlbumContainer";
 
-const Album = (title: props) => {
+const Album = () => {
   let albumId = useParams().id;
   const [album, setAlbum] = useState<albumMoreDeatils>();
-  const [albumTitle, setAlbumTitle] = useState<String>();
   const [songList, setSongList] = useState<Array<songsDetails>>([]);
-  const likedSongs = useAppSelector((state) => state.likedSongs);
-  const [addLikeSong, setAddLikeSong] = useState<songsDetails>();
-  const [currentType, setCurrentType] = useState<string>("");
   const dispatch = useDispatch();
 
   let key: string;
@@ -45,52 +34,25 @@ const Album = (title: props) => {
   };
 
   const getAlbumDetails = async () => {
-    //if the title is album the run fetch
-    //if the title is liked, set album to liked redux
-    if (title.title === "album") {
-      try {
-        const response = await fetch(
-          `https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`,
-          options
-        );
-        if (response.ok) {
-          let result = await response.json();
-          setCurrentType("album");
-          setAlbum(result);
-        } else {
-          console.log("Error");
-        }
-      } catch (error) {
-        console.log(error);
+    try {
+      const response = await fetch(
+        `https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`,
+        options
+      );
+      if (response.ok) {
+        let result = await response.json();
+        setAlbum(result);
+      } else {
+        console.log("Error");
       }
-    } else if (title.title === "liked") {
-      console.log("liked");
-      setAlbum(likedSongs);
-    }
-  };
-
-  const convertSecondToMinutesAlbum = (duration: number) => {
-    let minutes = Math.floor(duration / 60);
-    return `about ${minutes} min`;
-  };
-
-  const checkLengthOfTitle = () => {
-    let title = album?.title;
-    if (title !== undefined) {
-      if (title.length > 35) {
-        let element = document.getElementById("albumTitle");
-        element !== null && element.classList.add("xs-album-title-font");
-      } else if (title.length > 21) {
-        let element = document.getElementById("albumTitle");
-        element !== null && element.classList.add("small-album-title-font");
-      }
-      setAlbumTitle(title.charAt(0).toUpperCase() + title.slice(1));
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const setTypesForNowPlaying = () => {
     let newArr = [];
-    if (album !== undefined && currentType === "album") {
+    if (album !== undefined) {
       for (let i = 0; i < album.tracks.data.length; i++) {
         let newObj = {
           album: {
@@ -144,118 +106,18 @@ const Album = (title: props) => {
     }
   };
 
-  //   let rgb = getAverageRGB(document.getElementById("albumImage"));
-
-  //   function getAverageRGB(imgEl: any) {
-  //     var blockSize = 5, // only visit every 5 pixels
-  //       defaultRGB = {
-  //         r: 0,
-  //         g: 0,
-  //         b: 0,
-  //       }, // for non-supporting envs
-  //       canvas = document.createElement("canvas"),
-  //       context = canvas.getContext && canvas.getContext("2d"),
-  //       data,
-  //       width,
-  //       height,
-  //       i = -4,
-  //       length,
-  //       rgb = {
-  //         r: 0,
-  //         g: 0,
-  //         b: 0,
-  //       },
-  //       count = 0;
-
-  //     if (!context) {
-  //       return defaultRGB;
-  //     }
-
-  //     height = canvas.height =
-  //       imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
-  //     width = canvas.width =
-  //       imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
-
-  //     context.drawImage(imgEl, 0, 0);
-
-  //     try {
-  //       data = context.getImageData(0, 0, width, height);
-  //     } catch (e) {
-  //       /* security error, img on diff domain */
-  //       alert("x");
-  //       return defaultRGB;
-  //     }
-
-  //     length = data.data.length;
-
-  //     while ((i += blockSize * 4) < length) {
-  //       ++count;
-  //       rgb.r += data.data[i];
-  //       rgb.g += data.data[i + 1];
-  //       rgb.b += data.data[i + 2];
-  //     }
-
-  //     // ~~ used to floor values
-  //     rgb.r = ~~(rgb.r / count);
-  //     rgb.g = ~~(rgb.g / count);
-  //     rgb.b = ~~(rgb.b / count);
-
-  //     return rgb;
-  //   }
-
   useEffect(() => {
     getAlbumDetails();
-    album !== undefined && checkLengthOfTitle();
   }, []);
 
   useEffect(() => {
-    album !== undefined && checkLengthOfTitle();
     album !== undefined && setTypesForNowPlaying();
   }, [album]);
   return (
     <>
       {album !== undefined && (
         <div className="album-main-container">
-          <div className="album-first-container">
-            <div className="album-image-container">
-              <img
-                id="albumImage"
-                src={album.cover_medium}
-                alt="album"
-                className="album-image"
-              />
-            </div>
-            <div className="album-details-container">
-              <span className="album-type">
-                {album.record_type.toUpperCase()}
-              </span>
-              <h1 id="albumTitle" className="album-title">
-                {/* {checkLengthOfTitle(album.title)} */}
-                {albumTitle}
-              </h1>
-              <div className="album-details">
-                <img
-                  src={album.artist.picture_small}
-                  alt="album-artist"
-                  className="album-artist"
-                />
-                <span className="album-artist-name">{album.artist.name}</span>
-                <span>
-                  {" "}
-                  &#8226; {album.release_date.slice(0, 4)} &#8226;{" "}
-                  {album.nb_tracks} songs,{" "}
-                </span>
-                <span className="album-duration">
-                  {convertSecondToMinutesAlbum(album.duration)}
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="album-second-container">
-            <BtnPlay />
-            <FiHeart className="big-love-icon" />
-            <BtnThreeDotMenu />
-          </div>
+          <AlbumContainer album={album} />
           <div className="album-third-container">
             <div className="album-info">
               <div className="album-info-first">
@@ -284,7 +146,10 @@ const Album = (title: props) => {
                   </div>
                 </div>
                 <div className="song-duration-container">
-                  <SongDurationLike songDetails={songList[index]} />
+                  <SongDurationLike
+                    songDetails={songList[index]}
+                    title={"album"}
+                  />
                   <span>{convertSecondToMinutes(song.duration)}</span>
                   <SongDurationMenu />
                 </div>

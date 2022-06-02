@@ -7,6 +7,7 @@ import "./main.scss";
 import Search from "../../Components/search/Search";
 import Artist from "../artist/Artist";
 import Album from "../album/Album";
+import Liked from "../album/Liked";
 
 const Main = () => {
   return (
@@ -19,8 +20,8 @@ const Main = () => {
             <Route path="homepage" element={<Homepage />} />
             <Route path="artist/:id" element={<Artist />} />
             <Route path="search" element={<Search />} />
-            <Route path="album/:id" element={<Album title="album" />} />
-            <Route path="album/liked" element={<Album title="liked" />} />
+            <Route path="album/:id" element={<Album />} />
+            <Route path="liked" element={<Liked />} />
           </Routes>
         </div>
       </div>

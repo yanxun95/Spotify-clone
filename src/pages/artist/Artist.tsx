@@ -87,7 +87,7 @@ const Artist = () => {
   };
 
   const setNowPlaying = (numOfSong: number) => {
-    songList.length !== 0 && dispatch(setPlaylist(songList));
+    dispatch(setPlaylist(songList));
     dispatch(setNumOfSong(numOfSong));
   };
 
@@ -185,7 +185,7 @@ const Artist = () => {
                     <span>{song.title_short}</span>
                   </div>
                   <div className="song-duration-container">
-                    <SongDurationLike songDetails={song} />
+                    <SongDurationLike songDetails={song} title={"album"} />
                     <span>{convertSecondToMinutes(song.duration)}</span>
                     <SongDurationMenu />
                   </div>

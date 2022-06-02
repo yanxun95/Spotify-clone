@@ -1,0 +1,17 @@
+.btn-big-play {
+  display: block;
+  font-size: 3rem;
+  z-index: 1;
+  background-color: #1ed760;
+  border-radius: 50%;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: context-menu;
+  padding-left: 0.2rem;
+}
+.btn-big-play path {
+  fill: #000000;
+}
+.btn-big-play:hover {
+  transform: scale(1.05);
+}/*# sourceMappingURL=btnPlay.css.map */

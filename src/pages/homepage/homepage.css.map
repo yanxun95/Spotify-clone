@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "homepage.scss"
-    ],
-    "names": [],
-    "file": "homepage.css"
-}
+{"version":3,"sources":["homepage.scss","../../styles/varaibles.scss","homepage.css"],"names":[],"mappings":"AAEA;EACI,yBAAA;EACA,cCFI;EDGJ,WAAA;EACA,iBAAA;AEDJ","file":"homepage.css"}

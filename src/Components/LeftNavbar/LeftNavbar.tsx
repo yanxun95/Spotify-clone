@@ -38,7 +38,7 @@ const LeftNavbar = () => {
               <span>Home</span>
             </li>
           </Link>
-          <Link to={"/search"} className="lnb-li-link">
+          {/* <Link to={"/search"} className="lnb-li-link">
             <li
               id="lnbSearch"
               className="lnb-li"
@@ -57,18 +57,18 @@ const LeftNavbar = () => {
               <BiBookmark className="lnb-li-icon" />
               <span>Your Library</span>
             </li>
-          </Link>
+          </Link> */}
         </ul>
         <ul className="lnb-ul">
-          <li
+          {/* <li
             id="lnbPlaylist"
             className="lnb-li"
             onClick={() => selectedIcon("lnbPlaylist")}
           >
             <GrFormAdd className="lnb-li-icon" />
             <span>Create Playlist</span>
-          </li>
-          <Link to={"/album/liked"} className="lnb-li-link">
+          </li> */}
+          <Link to={"/liked"} className="lnb-li-link">
             <li
               id="lnbLikied"
               className="lnb-li"

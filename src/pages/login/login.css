@@ -1,0 +1,67 @@
+.login-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0rem 0.75rem;
+  width: 100%;
+  height: 80vh;
+}
+
+.login-spotify-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-spotify-logo {
+  font-size: 3.5rem;
+}
+
+.login-spotify-logo-font {
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.login-spotify-logo-font .login-trademark {
+  font-size: 5px;
+  vertical-align: super;
+}
+
+.login-line {
+  width: 100%;
+  border-bottom: 1px solid #d9dadc;
+  margin: 1.5rem 0rem;
+}
+
+.login-section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.btn-guest-login {
+  background-color: #1ed760;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  cursor: context-menu;
+  border: 3px solid transparent;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+.btn-guest-login:hover {
+  background-color: #1fdf64;
+  transform: scale(1.04);
+}
+.btn-guest-login:active {
+  background-color: #169c46;
+  transform: scale(1);
+  border-color: #000000;
+}
+.btn-guest-login:focus {
+  border-color: #000000;
+}
+
+.btn-link {
+  color: #000000;
+  text-decoration: none;
+}/*# sourceMappingURL=login.css.map */

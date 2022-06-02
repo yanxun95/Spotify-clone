@@ -82,8 +82,8 @@ const Login = () => {
 
   useEffect(() => {
     // initLikedList();
-    // setNowPlayingRedux();
-    // dispatch(setNumOfSong(0));
+    setNowPlayingRedux();
+    dispatch(setNumOfSong(0));
   }, []);
   return (
     <div className="login-main-container">

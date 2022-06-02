@@ -1,9 +1,12 @@
 @import "../../styles/varaibles.scss";
 
-.song-duration-like {
-    opacity: 0;
+.song-duration-like, .song-duration-liked{
     margin-right: 1.5rem;
     font-size: 1rem;
+}
+
+.song-duration-like {
+    opacity: 0;
 
     &:hover {
         color: $white;
@@ -12,4 +15,9 @@
     &:active {
         color: $scrollbar-active;
     }
+}
+
+.song-duration-liked{
+    color: $btn-green;
+    fill: $btn-green;
 }

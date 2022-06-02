@@ -1,0 +1,146 @@
+.lnb-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 241px;
+  max-width: 241px;
+  min-height: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: 1;
+  color: #b3b3b3;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 0.875rem;
+  padding: 1.5rem 0rem 0rem;
+}
+
+.lnb-sec-container {
+  height: 100%;
+  position: relative;
+}
+
+.spotify-logo-container {
+  padding: 0rem 1.5rem;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.spotify-logo {
+  font-size: 2.5rem;
+}
+
+.spotify-logo-font {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.spotify-logo-font .trademark {
+  font-size: 5px;
+  vertical-align: super;
+}
+
+.lnb-ul,
+.lnb-playlist-ul {
+  list-style-type: none;
+  padding: 0rem 1.5rem;
+}
+
+.lnb-ul {
+  margin: 1rem 0rem 0rem;
+}
+
+.lnb-playlist-ul {
+  margin: 0.25rem 0rem 0rem;
+}
+
+.lnb-li {
+  padding: 1rem 0rem 0rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  color: #b3b3b3;
+}
+.lnb-li:hover .lnb-li-font,
+.lnb-li:hover .lnb-li-playlist-font, .lnb-li:target .lnb-li-font,
+.lnb-li:target .lnb-li-playlist-font {
+  color: #ffffff;
+}
+.lnb-li:hover .lnb-li-icon, .lnb-li:target .lnb-li-icon {
+  color: #ffffff;
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+.lnb-li:hover .lnb-li-icon path, .lnb-li:target .lnb-li-icon path {
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+
+.lnb-li-icon {
+  font-size: 1.5rem;
+  stroke: #b3b3b3;
+  color: #b3b3b3;
+  margin-right: 1rem;
+}
+.lnb-li-icon path {
+  stroke: #b3b3b3;
+}
+
+.lnb-li-link {
+  text-decoration: none;
+}
+
+.break-line {
+  padding: 0rem 1.5rem;
+}
+.break-line .break-line-border {
+  border-top: 1px solid #282828;
+  margin: 0.75rem 0rem 0rem;
+}
+
+.lnb-li-playlist-font {
+  font-weight: 600;
+  cursor: context-menu;
+}
+
+.install-app-container {
+  width: 100%;
+  position: absolute;
+  bottom: 89px;
+  z-index: 1;
+  background-color: #000000;
+  cursor: pointer;
+}
+.install-app-container .install-app-in-container {
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.install-app-container .install-app-icon {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+.install-app-container span {
+  font-weight: 600;
+}
+.install-app-container:hover .install-app-icon,
+.install-app-container:hover span {
+  color: #ffffff;
+}
+
+.lnb-li-font-white {
+  color: #ffffff;
+}
+.lnb-li-font-white * {
+  color: #ffffff;
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+.lnb-li-font-white * * {
+  stroke: #ffffff !important;
+  fill: #ffffff !important;
+}/*# sourceMappingURL=leftNavbar.css.map */

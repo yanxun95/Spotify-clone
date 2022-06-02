@@ -1,0 +1,54 @@
+.main-container {
+  width: 100%;
+  height: 91vh;
+}
+@media screen and (min-height: 995px) {
+  .main-container {
+    height: 93vh;
+  }
+}
+@media screen and (min-height: 1290px) {
+  .main-container {
+    height: 94vh;
+  }
+}
+@media screen and (min-height: 1505PX) {
+  .main-container {
+    height: 95vh;
+  }
+}
+
+.top-container {
+  background-color: #121212;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.header2 {
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+.right-container {
+  overflow-x: hidden;
+  margin-left: 241px;
+  width: 100%;
+  height: 100%;
+}
+.right-container::-webkit-scrollbar {
+  width: 0.75rem;
+}
+.right-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.right-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+.right-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+.right-container::-webkit-scrollbar-thumb:active {
+  background-color: rgba(255, 255, 255, 0.7);
+}/*# sourceMappingURL=main.css.map */

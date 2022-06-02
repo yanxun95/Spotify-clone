@@ -83,11 +83,11 @@ interface tracks {
   data: Array<smallSongDetails>;
 }
 
-interface genres {
+export interface genres {
   data: Array<genersDetails>;
 }
 
-type genersDetails = {
+export type genersDetails = {
   id: number;
   name: string;
   picture: string;

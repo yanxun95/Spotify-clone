@@ -166,106 +166,97 @@ const NowPlaying = () => {
 
   useEffect(() => {
     playMusic("play");
-  }, [numberOfSong]);
+  }, [numberOfSong, playlist]);
 
   useEffect(() => {
     initPlaybtn();
   }, []);
 
-  // useEffect(() => {
-  //   window.onbeforeunload = function () {
-  //     const btnPlay = document.getElementById("npBtnPlay");
-  //     const btnPause = document.getElementById("npBtnPause");
-  //     if (btnPlay !== null && btnPause !== null) {
-  //       btnPlay.classList.remove("hide-item");
-  //       btnPause.classList.remove("display-item");
-  //     }
-  //     console.log("been run");
-  //   };
-
-  //   return () => {
-  //     window.onbeforeunload = null;
-  //   };
-  // }, []);
-
   return (
     <div className="np-container">
-      <div className="np-first-container">
-        <img
-          src={playlist[numberOfSong].album.cover}
-          alt="album"
-          className="np-album-cover"
-        />
-        <div className="np-details">
-          <span className="np-song-title">
-            {playlist[numberOfSong].title_short}
-          </span>
-          <span className="np-song-artist">
-            {playlist[numberOfSong].artist.name}
-          </span>
-        </div>
-        <FiHeart className="np-like" />
-      </div>
-      <div className="np-seconnd-container">
-        <div className="np-play-bar">
-          <TiArrowShuffle id="btnSuffer" onClick={sufferList} />
-          <BsFillCaretLeftFill onClick={previousSong} />
-          <div className="np-play-container">
-            <BsPlayCircleFill
-              id="npBtnPlay"
-              className="np-btn-play"
-              onClick={() => playMusic("play")}
+      {playlist.length > 0 && (
+        <>
+          <div className="np-first-container">
+            <img
+              src={playlist[numberOfSong].album.cover}
+              alt="album"
+              className="np-album-cover"
             />
-            <BsPauseCircleFill
-              id="npBtnPause"
-              className="np-btn-pause"
-              onClick={() => playMusic("pause")}
-            />
+            <div className="np-details">
+              <span className="np-song-title">
+                {playlist[numberOfSong].title_short}
+              </span>
+              <span className="np-song-artist">
+                {playlist[numberOfSong].artist.name}
+              </span>
+            </div>
+            <FiHeart className="np-like" />
           </div>
-          <BsFillCaretRightFill onClick={nextSong} />
-          <TiArrowLoop />
-        </div>
-        <div className="np-progress">
-          <span id="audioCurrentTime">0:00</span>
-          <div className="progress-bar-container">
-            <audio
-              id="audioElement"
-              src={playlist[numberOfSong].preview}
-              preload={"auto"}
-            />
-            <Slider
-              size="small"
-              aria-label="Small"
-              className="slider-bar"
-              value={songCurrentDuration}
-              min={0}
-              max={songDuration}
-              onChange={controlDurationSong}
-            />
+          <div className="np-seconnd-container">
+            <div className="np-play-bar">
+              <TiArrowShuffle id="btnSuffer" onClick={sufferList} />
+              <BsFillCaretLeftFill onClick={previousSong} />
+              <div className="np-play-container">
+                <BsPlayCircleFill
+                  id="npBtnPlay"
+                  className="np-btn-play"
+                  onClick={() => playMusic("play")}
+                />
+                <BsPauseCircleFill
+                  id="npBtnPause"
+                  className="np-btn-pause"
+                  onClick={() => playMusic("pause")}
+                />
+              </div>
+              <BsFillCaretRightFill onClick={nextSong} />
+              <TiArrowLoop />
+            </div>
+            <div className="np-progress">
+              <span id="audioCurrentTime">0:00</span>
+              <div className="progress-bar-container">
+                <audio
+                  id="audioElement"
+                  src={playlist[numberOfSong].preview}
+                  preload={"auto"}
+                />
+                <Slider
+                  size="small"
+                  aria-label="Small"
+                  className="slider-bar"
+                  value={songCurrentDuration}
+                  min={0}
+                  max={songDuration}
+                  onChange={controlDurationSong}
+                />
+              </div>
+              <span id="audioDuration">0:31</span>
+            </div>
           </div>
-          <span id="audioDuration">0:31</span>
-        </div>
-      </div>
-      <div className="np-third-container">
-        <MdOutlineQueueMusic />
-        <CgLaptop />
-        <div className="np-volume-container">
-          <HiOutlineVolumeUp id="volumeSound" onClick={() => mute("sound")} />
-          <HiOutlineVolumeOff
-            id="volumeMute"
-            className="hide-item"
-            onClick={() => mute("mute")}
-          />
-          <Slider
-            size="small"
-            value={volumeValue}
-            aria-label="Small"
-            onChange={controlVolume}
-            className="slider-bar btn-voloum-bar"
-          />
-        </div>
-        <FaExpandAlt />
-      </div>
+          <div className="np-third-container">
+            <MdOutlineQueueMusic />
+            <CgLaptop />
+            <div className="np-volume-container">
+              <HiOutlineVolumeUp
+                id="volumeSound"
+                onClick={() => mute("sound")}
+              />
+              <HiOutlineVolumeOff
+                id="volumeMute"
+                className="hide-item"
+                onClick={() => mute("mute")}
+              />
+              <Slider
+                size="small"
+                value={volumeValue}
+                aria-label="Small"
+                onChange={controlVolume}
+                className="slider-bar btn-voloum-bar"
+              />
+            </div>
+            <FaExpandAlt />
+          </div>
+        </>
+      )}
     </div>
   );
 };

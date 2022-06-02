@@ -1,0 +1,112 @@
+.plr-item,
+.plr-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.plr-item {
+  background-color: #181818;
+  padding: 1rem !important;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: #ffffff;
+}
+.plr-item:hover {
+  background-color: #282828;
+}
+.plr-item:hover .item-hover-play {
+  display: block;
+}
+.plr-item:nth-child(n+2) {
+  margin-left: 1rem;
+}
+
+.item-images-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.item-hover-play {
+  display: none;
+  position: absolute;
+  font-size: 3rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  background-color: #1ed760;
+  border-radius: 50%;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: context-menu;
+  padding-left: 0.2rem;
+}
+.item-hover-play path {
+  fill: #000000;
+}
+.item-hover-play:hover {
+  transform: scale(1.05);
+}
+
+.item-images-artist {
+  border-radius: 50%;
+  width: inherit;
+}
+
+.item-images-square {
+  border-radius: 0.25rem;
+  width: inherit;
+  min-width: 9.5rem;
+}
+
+.plr-item-name {
+  max-width: 9.5rem;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.plr-item-info {
+  font-size: 0.75rem;
+  color: #b3b3b3;
+}
+
+@media screen and (max-width: 772px) {
+  .plr-item:nth-child(n+3) {
+    display: none;
+  }
+}
+@media screen and (max-width: 972px) {
+  .plr-item:nth-child(n+4) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .plr-item:nth-child(n+5) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1505px) {
+  .plr-item:nth-child(n+6) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1710px) {
+  .plr-item:nth-child(n+7) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1912px) {
+  .plr-item:nth-child(n+8) {
+    display: none;
+  }
+}
+@media screen and (max-width: 2117px) {
+  .plr-item:nth-child(n+9) {
+    display: none;
+  }
+}/*# sourceMappingURL=card.css.map */

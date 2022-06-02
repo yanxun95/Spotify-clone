@@ -1,0 +1,45 @@
+.plr-main-container {
+  height: 100%;
+  margin-bottom: 1rem;
+  min-width: 450px;
+}
+
+.plr-first-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plr-title, .btn-see-all {
+  cursor: pointer;
+}
+.plr-title:hover, .btn-see-all:hover {
+  text-decoration: underline;
+}
+
+.plr-title {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.btn-see-all {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b3b3b3;
+  letter-spacing: 1px;
+  align-self: flex-end;
+}
+
+.plr-second-container {
+  width: 100%;
+  padding: 0px !important;
+  margin: 0px !important;
+  max-width: 100% !important;
+}
+
+.plr-row {
+  margin: 0px !important;
+  flex-wrap: nowrap !important;
+  --bs-gutter-x: 0px !important;
+}/*# sourceMappingURL=playlistRow.css.map */

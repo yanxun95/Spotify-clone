@@ -141,7 +141,7 @@
 }
 
 .album-time-icon{
-    margin-right: 2rem;
+    margin-right: 2.5rem;
 }
 
 .album-first-col{
@@ -154,7 +154,6 @@
 }
 
 .album-song-col2{
-    margin-left: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -172,4 +171,31 @@
     margin-top: 2rem;
     color: $scrollbar-hover;
     font-size: $font-xss;
+}
+
+.like-song-with-img {
+    display: flex;
+    align-items: center;
+}
+
+.song-list-number-container{
+    margin-right: 1rem;
+}
+
+.song-ablum-title{
+    width: 12rem;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 2rem;
+
+    &:hover{
+        color: white;
+        text-decoration: underline;
+    }
+}
+
+.album-title-album{
+    width: 16.5rem;
 }
