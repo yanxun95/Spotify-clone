@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import LeftNavbar from "../../Components/leftNavbar/LeftNavbar";
+
 import NowPlaying from "../../Components/nowPlaying/NowPlaying";
 import TopNavbar from "../../Components/topNavbar/TopNavbar";
 import Homepage from "../homepage/Homepage";
@@ -8,6 +8,7 @@ import Search from "../../Components/search/Search";
 import Artist from "../artist/Artist";
 import Album from "../album/Album";
 import Liked from "../album/Liked";
+import LeftNavbar from "../../Components/leftNavbar/LeftNavbar";
 
 const Main = () => {
   return (
